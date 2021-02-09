@@ -16,10 +16,11 @@ class Database(object):
     def connect():
         try:
             conn = pm.connect(user=Database.user, password=Database.password, host=Database.host, db=Database.dbname)
-            conn.autocommit(True)
+            #conn.autocommit(True)
             _query_execute = conn.cursor()
             if _query_execute:
-                print("Database Connection Successful")
+                #print("Database Connection Successful")
+                pass
             return _query_execute
         except Exception as exception:
             return print("Exception caught", exception)

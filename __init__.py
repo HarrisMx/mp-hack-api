@@ -11,7 +11,6 @@ import os
 import json
 from datetime import date, datetime
 #from pyfcm import FCMNotification
-#import hashlib
 
 app = Flask(__name__)
 auth = HTTPBasicAuth()
@@ -44,7 +43,10 @@ def Root():
 @app.route('/api/v1/Login', methods=['POST'])
 def Login():
     try:
-        pass
+        if not request.json or not 'password' in request.json:
+            abort(400)
+        res = UserController.LoginUser(request)
+        return res
     except Exception as exc:
         return make_response(jsonify({"LoginError": str(exc)}))
 
